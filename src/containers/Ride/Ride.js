@@ -20,6 +20,8 @@ import GoBack from "../../components/GoBack";
 import SendMessageButton from "../../components/SendMessageButton";
 import DisplayRating from "../../components/DisplayRating";
 
+import ShareRide from "../../components/ShareRide"
+
 import { isDateInPast } from "../../helpers";
 
 import {
@@ -70,11 +72,11 @@ const Ride = () => {
       </span>
 
       {rideData.ride &&
-      !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
-      rideData.ride.seatsLeft > 0 ? (
+        !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
+        rideData.ride.seatsLeft > 0 ? (
         isLoggedIn ? (
           currentUser.Driver &&
-          currentUser.Driver.id === rideData.ride.Driver.id ? null : (
+            currentUser.Driver.id === rideData.ride.Driver.id ? null : (
             <div className="book-button">
               <Link to={`/book/${rideData.ride.id}`}>
                 <Button variant="success" size="lg">
@@ -113,8 +115,8 @@ const Ride = () => {
 
             {/* Display past booking for this ride by this user */}
             {isLoggedIn &&
-            currentUser.Driver &&
-            rideData.ride.DriverId === currentUser.Driver.id ? (
+              currentUser.Driver &&
+              rideData.ride.DriverId === currentUser.Driver.id ? (
               <>
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
@@ -143,8 +145,8 @@ const Ride = () => {
                   new Date(rideData.ride.dateTimeOrigin),
                   new Date()
                 ) &&
-                rideData.ride.seatsLeft === 0 &&
-                rideData.ride.RideStatusId < 4 ? (
+                  rideData.ride.seatsLeft === 0 &&
+                  rideData.ride.RideStatusId < 4 ? (
                   <Row className="mb-4 mx-1 mx-sm-0">
                     <Col
                       xs={12}
@@ -352,20 +354,18 @@ const Ride = () => {
                         </Row>
                       </LinkContainer>
                       <hr />
-                      {isLoadingRide ? (
-                        <Row>
-                          <Col>
-                            <SendMessageButton
-                              type="link"
-                              driverId={rideData.ride.DriverId}
-                              user={currentUser}
-                              receiverName={rideData.ride.Driver.User.firstName}
-                              rideId={rideData.ride.id}
-                            />
-                            <hr />
-                          </Col>
-                        </Row>
-                      ) : null}
+                      <Row>
+                        <Col>
+                          <SendMessageButton
+                            type="link"
+                            driverId={rideData.ride.DriverId}
+                            user={currentUser}
+                            receiverName={rideData.ride.Driver.User.firstName}
+                            rideId={rideData.ride.id}
+                          />
+                          <hr />
+                        </Col>
+                      </Row>
                       <Row className="align-items-center my-0 py-0">
                         <Col xs={3} md={2} className="text-center pe-0">
                           <img src={car} alt="" height={30} />
@@ -382,7 +382,7 @@ const Ride = () => {
                 </Row>
 
                 {!isloadingUserRideBookings &&
-                userRideBookingsData.length > 0 ? (
+                  userRideBookingsData.length > 0 ? (
                   <Row className="mb-3 mx-1 mx-sm-0">
                     <Col
                       xs={12}
@@ -406,6 +406,20 @@ const Ride = () => {
                     </Col>
                   </Row>
                 ) : null}
+                <Row>
+                  <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
+                    <div className="text-center">
+                    <Row>
+                        <Col>
+                          <p className="lead">
+                            Share Ride
+                          </p>
+                        </Col>
+                      </Row>
+                      <ShareRide />
+                    </div>
+                  </Col>
+                </Row>
               </>
             )}
           </div>

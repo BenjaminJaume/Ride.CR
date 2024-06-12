@@ -2,7 +2,7 @@
 	"404": {
 		"back1": "Vuelve a la",
 		"message": "No hemos podido encontrar la página que busca.",
-		"notFound": "Página no encontrada"
+		"notFound": "Página fue encontrada"
 	},
 	"FAQ": {
 		"answer1": "Por ahora, todos los pagos se realizan con dinero en efectivo. Puede acordar directamente con el conductor o sus pasajeros la moneda, en CRC (colones costarricenses) o en USD (dólares estadounidenses)",
